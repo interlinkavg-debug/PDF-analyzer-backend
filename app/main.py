@@ -26,7 +26,7 @@ app = FastAPI(
 # CORS configuration (adjust for your frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Change this to your frontend domain in production
+    allow_origins=["https://v0-document-icon-next-to-header.vercel.app/"],  # Change this to your frontend domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -59,3 +59,4 @@ def read_root():
     Simple health check endpoint to verify the API is running.
     """
     return {"status": "OK"}
+
