@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  pdf-analyzer-backend:
+    build: .
+    container_name: pdf_analyzer_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: unless-stopped
