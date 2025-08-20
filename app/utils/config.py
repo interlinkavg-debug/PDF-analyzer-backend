@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     # LLM_MODEL_NAME
     LLM_MODEL_NAME: str = Field('tngtech/deepseek-r1t2-chimera:free', env='LLM_MODEL_NAME')
 
+    # Optional frontend URL
+    FRONTEND_URL: Optional[str] = Field(None, env='FRONTEND_URL')
+
     def masked(self) -> dict:
         """
         Returns a dict of settings with sensitive info masked for safe logging.
@@ -44,6 +47,7 @@ class Settings(BaseSettings):
             "LLM_TIMEOUT_SECONDS": self.LLM_TIMEOUT_SECONDS,
             "LLM_MAX_RETRIES": self.LLM_MAX_RETRIES,
             "LOG_LEVEL": self.LOG_LEVEL,
+            "FRONTEND_URL": self.FRONTEND_URL,
         }
 
     class Config:
@@ -52,6 +56,7 @@ class Settings(BaseSettings):
         """
         env_file = ".env"  # Auto-load environment variables from this file
         env_file_encoding = "utf-8"
+        extra = "ignore"  # <-- allow extra environment variables safely
 
 # Create a single shared settings instance
 settings = Settings()
