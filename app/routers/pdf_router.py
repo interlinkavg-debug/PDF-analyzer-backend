@@ -9,7 +9,7 @@ from app.services.pdf_service import extract_text_from_pdf, summarize_text_with_
 
 
 # API Key authentication setup
-API_KEY = os.getenv("PDF_ANALYZER_API_KEY", "changeme")
+API_KEY = os.getenv("OPENROUTER_API_KEY", "changeme")
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
 
 async def verify_api_key(api_key: str = Depends(api_key_header)):
@@ -135,3 +135,4 @@ async def upload_pdf_and_summarize(file: UploadFile = File(...), api_key: str = 
         raise HTTPException(status_code=500, detail="Failed to generate summary from text.")
 
     return JSONResponse(content=summary_result)
+
